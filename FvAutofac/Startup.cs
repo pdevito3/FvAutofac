@@ -45,20 +45,20 @@ namespace FvAutofac
 
         }
 
-        public void ConfigureContainer(ContainerBuilder builder)
-        {
-            builder.Register(c => new MapperConfiguration(cfg =>
-            {
-                cfg.AddProfile(new WfProfile(c.Resolve<ILogger<WfProfile>>()));
-            }).CreateMapper());
+        //public void ConfigureContainer(ContainerBuilder builder)
+        //{
+        //    builder.Register(c => new MapperConfiguration(cfg =>
+        //    {
+        //        cfg.AddProfile(new WfProfile(c.Resolve<ILogger<WfProfile>>()));
+        //    }).CreateMapper());
 
-            builder.RegisterType<WfRepo>().As<IWfRepo>();
-            builder.RegisterType<SieveProcessor>();
+        //    builder.RegisterType<WfRepo>().As<IWfRepo>();
+        //    builder.RegisterType<SieveProcessor>();
 
-            builder.RegisterAssemblyTypes(typeof(Startup).GetType().Assembly)
-                .Where(t => t.IsClosedTypeOf(typeof(IValidator<>)))
-                .AsImplementedInterfaces();
-        }
+        //    builder.RegisterAssemblyTypes(typeof(Startup).GetType().Assembly)
+        //        .Where(t => t.IsClosedTypeOf(typeof(IValidator<>)))
+        //        .AsImplementedInterfaces();
+        //}
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
